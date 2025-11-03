@@ -1,0 +1,70 @@
+.corpo{
+    display: flex;
+    flex-direction: column; /* título em cima, conteúdo abaixo */
+    border-radius: 25px;
+    width: 100%;
+    min-height:100vh;
+    background-color: rgb(121, 120, 120);
+    gap: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.corpo > header{
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.testes{
+    display: flex;
+    gap: 16px; /* espaço entre as 3 caixas */
+    align-items: stretch;
+}
+
+.testes > div {
+    flex: 1; /* mesmo tamanho */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    margin: 0; /* remover margens externas grandes */
+    min-height: var(--card-height, 220px); /* altura padronizada */
+}
+.Templestes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    /* dar a largura aproximada de 1 coluna em .testes */
+    width: 33.333%;
+    min-width: 220px;
+    min-height: var(--card-height, 220px);
+    background-color: chocolate;
+}
+.Ativ{
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    width: 33.333%;
+    min-width: 220px;
+    min-height: var(--card-height, 220px);
+    background-color: rgb(44, 40, 37);
+}
+.bot{
+    background-color: blueviolet;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 30px;
+}
+.teste1{ background-color: red; }
+.teste2{ background-color: black; color: white; }
+.teste3{ background-color: blue; }
+.teste4{ background-color: rgb(0, 255, 170); }
