@@ -153,7 +153,26 @@ app.delete('/imoveis/:id', async (req, res) => {
     }
 });
 
-1
+app.post('/login', async (req, res) => {
+    const { nome, email, senha } = req.body;
+
+    try {
+        const [rows] = await pool.query(
+            'SELECT * FROM usuario WHERE nome = ? AND email = ? AND senha = ?',
+            [nome, email, senha]
+        );
+
+        if (rows.length === 0) {
+            return res.status(401).json({ message: 'Nome, email ou senha incorretos' });
+        }
+
+        res.json({ message: 'Login bem-sucedido', usuario: rows[0] });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao tentar fazer login' });
+    }
+});
+
 
 
 
