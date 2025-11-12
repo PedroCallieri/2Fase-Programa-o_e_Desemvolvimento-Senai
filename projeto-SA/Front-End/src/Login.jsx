@@ -71,9 +71,11 @@ function Login() {
                 </div>
 
                 <button onClick={Logar}>Entrar</button>
+                
+                <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
 
                 <div>
-                    <p>Não tenho conta?<a href="">Cadastrar</a> </p>
+                    <p>Não tenho conta?<a href="/cadastro">Cadastrar</a> </p>
                 </div>
 
             </form>

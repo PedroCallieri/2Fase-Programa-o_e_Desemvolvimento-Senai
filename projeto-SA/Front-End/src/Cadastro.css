@@ -1,11 +1,10 @@
-.Conteiner_Tela{
-    display: flex;
+.conteiner{
+   display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(126, 47, 47);
+    background-color: rgb(87, 73, 73);
     border-radius: 25px;
     gap: 15px;
     height:50vh;
     width: 50vh;
-    
-}
+}^

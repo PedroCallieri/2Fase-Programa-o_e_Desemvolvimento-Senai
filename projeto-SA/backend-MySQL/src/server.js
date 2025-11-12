@@ -109,13 +109,22 @@ app.get('/imoveis/:id', async (req, res) => {
 });
 
 app.post('/imoveis', async (req, res) => {
-    const { titulo, tipo, area, quartos, banheiros, mobilia, numero_garagem, descricao, preco, url_imagem, Usuario_id } = req.body;
+    const { titulo, tipo, area, quartos, banheiros,
+        mobilia, numero_garagem, estado, cidade, bairro, rua,
+        numero, cep, descricao, preco, url_imagem, usuario_id } = req.body;
+
     try {
         const [result] = await pool.query(
-            'INSERT INTO Imoveis (titulo, tipo, area, quartos, banheiros, mobilia, numero_garagem, descricao, preco, url_imagem, Usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [titulo, tipo, area, quartos, banheiros, mobilia, numero_garagem, descricao, preco, url_imagem, Usuario_id]
+            'INSERT INTO imoveis (titulo, tipo, area, quartos, banheiros, mobilia, numero_garagem, estado, cidade, bairro, rua, numero, cep, descricao, preco, url_imagem, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [titulo, tipo, area, quartos, banheiros, mobilia,
+                numero_garagem, estado, cidade, bairro, rua,
+                numero, cep, descricao, preco, url_imagem, usuario_id
+            ]
         );
-        const [novoImovel] = await pool.query('SELECT * FROM Imoveis WHERE id_Imovel = ?', [result.insertId]);
+        const [novoImovel] = await pool.query(
+            'SELECT * FROM imoveis WHERE id_imoveis = ?',
+            [result.insertId]
+        );
         res.status(201).json(novoImovel[0]);
     } catch (err) {
         console.error(err);
@@ -124,16 +133,26 @@ app.post('/imoveis', async (req, res) => {
     
 });
 
+
 app.put('/imoveis/:id', async (req, res) => {
     const { id } = req.params;
-    const { titulo, tipo, area, quartos, banheiros, mobilia, numero_garagem, descricao, preco, url_imagem, Usuario_id } = req.body;
+    const { titulo, tipo, area, quartos, banheiros, mobilia,
+        numero_garagem, estado, cidade, bairro, rua, numero, cep,
+        descricao, preco, url_imagem, usuario_id } = req.body;
+
     try {
         const [result] = await pool.query(
-            'UPDATE Imoveis SET titulo = ?, tipo = ?, area = ?, quartos = ?, banheiros = ?, mobilia = ?, numero_garagem = ?, descricao = ?, preco = ?, url_imagem = ?, Usuario_id = ? WHERE id_Imovel = ?',
-            [titulo, tipo, area, quartos, banheiros, mobilia, numero_garagem, descricao, preco, url_imagem, Usuario_id, id]
+            'UPDATE imoveis SET titulo = ?, tipo = ?, area = ?, quartos = ?, banheiros = ?, mobilia = ?, numero_garagem = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, cep = ?, descricao = ?, preco = ?, url_imagem = ?, usuario_id = ? WHERE id_imoveis = ?',
+            [titulo, tipo, area, quartos, banheiros, mobilia, numero_garagem,
+                estado, cidade, bairro, rua, numero, cep, descricao, preco, url_imagem, usuario_id, id]
         );
-        if (result.affectedRows === 0) return res.status(404).json({ error: 'Imóvel não encontrado' });
-        const [imovelAtualizado] = await pool.query('SELECT * FROM Imoveis WHERE id_Imovel = ?', [id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Imóvel não encontrado' });
+        }
+        const [imovelAtualizado] = await pool.query(
+            'SELECT * FROM imoveis WHERE id_imoveis = ?',
+            [id]
+        );
         res.json(imovelAtualizado[0]);
     } catch (err) {
         console.error(err);
@@ -144,7 +163,7 @@ app.put('/imoveis/:id', async (req, res) => {
 app.delete('/imoveis/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const [result] = await pool.query('DELETE FROM Imoveis WHERE id_Imovel = ?', [id]);
+        const [result] = await pool.query('DELETE FROM Imoveis WHERE id_imoveis = ?', [id]);
         if (result.affectedRows === 0) return res.status(404).json({ error: 'Imóvel não encontrado' });
         res.json({ message: 'Imóvel deletado com sucesso' });
     } catch (err) {
