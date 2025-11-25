@@ -1,0 +1,40 @@
+.card {
+  width: 250px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 12px;
+}
+
+.card-info h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.card-tipo {
+  font-size: 14px;
+  color: #555;
+}
+
+.card-preco {
+  margin-top: 10px;
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 18px;
+}
